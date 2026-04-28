@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.danvilledrivingschool.net)",
+      "Bash(npm install *)"
+    ]
+  }
+}
