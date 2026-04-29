@@ -58,13 +58,9 @@ export default function Hero() {
             </p>
 
             <div className="hero-fade-4 flex flex-col sm:flex-row gap-3 mb-12">
-              <a href="#contact"
-                className="pulse-cta bg-red-600 hover:bg-red-500 text-white font-bold px-8 py-4 rounded-xl text-base transition-all hover:shadow-lg no-underline text-center">
-                Schedule a Lesson
-              </a>
               <a href="#pricing"
-                className="border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl text-base transition-all hover:bg-white/10 no-underline text-center">
-                View Pricing
+                className="pulse-cta bg-red-600 hover:bg-red-500 text-white font-bold px-8 py-4 rounded-xl text-base transition-all hover:shadow-lg no-underline text-center">
+                Packages
               </a>
             </div>
 

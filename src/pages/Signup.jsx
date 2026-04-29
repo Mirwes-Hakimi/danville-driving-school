@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { PACKAGES } from '../components/Pricing'
 import Logo from '../components/Logo'
+import { sendStudentWelcome, sendSchoolNotification } from '../utils/sendEmail'
 
 export default function Signup() {
   const { signup } = useAuth()
@@ -29,8 +30,16 @@ export default function Signup() {
     if (form.password !== form.confirm) { setError('Passwords do not match.'); return }
     setLoading(true)
     const result = signup({ name: form.name, email: form.email, dateOfBirth: form.dateOfBirth, phone: form.phone, password: form.password })
+    if (result.error) { setLoading(false); setError(result.error); return }
+
+    // Fire confirmation emails — non-blocking, failures are silent
+    const userData = { name: form.name, email: form.email, phone: form.phone, dateOfBirth: form.dateOfBirth }
+    Promise.all([
+      sendStudentWelcome(userData),
+      sendSchoolNotification(userData),
+    ]).catch(() => {})
+
     setLoading(false)
-    if (result.error) { setError(result.error); return }
     navigate('/student' + (selectedPkg ? '?book=' + selectedPkg.id : ''))
   }
 
